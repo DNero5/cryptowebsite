@@ -19,8 +19,8 @@ import { GiMining } from "react-icons/gi";
 import { BiTransferAlt } from "react-icons/bi";
 import { LuClipboardCopy } from "react-icons/lu";
 import { AiOutlineStock } from "react-icons/ai";
-import ThemeSwitch from "./ThemeSwitch"; // Adjust the path as needed
-
+import ThemeSwitch from "./ThemeSwitch";
+import Link from "next/link";
 
 const Navbar = () => {
   const [mobile, setMobile] = useState(false);
@@ -52,6 +52,21 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [mobile]);
 
+  const menuItems = [
+    { icon: <IoIosHome />, label: "Home", href: "/" },
+    { icon: <FaClipboardQuestion />, label: "Trade", href: "/trade" },
+    { icon: <FaPersonChalkboard />, label: "Sign Up", href: "#signup" },
+    { icon: <FaPersonCircleCheck />, label: "Sign In", href: "#signin" },
+    { icon: <MdOutlineMarkEmailRead />, label: "Contact", href: "/contact" },
+    { icon: <RiFileInfoFill />, label: "About Us", href: "#about" },
+    { icon: <RiExchangeFundsFill />, label: "Hedge Funds", href: "#hedge" },
+    { icon: <GiMining />, label: "Crypto Mining", href: "#crypto" },
+    { icon: <BiTransferAlt />, label: "Forex Trading", href: "#forex" },
+    { icon: <LuClipboardCopy />, label: "Copy Trading", href: "#copy" },
+    { icon: <MdOutlinePrivacyTip />, label: "Privacy Policy", href: "#privacy" },
+    { icon: <AiOutlineStock />, label: "Stocks Trading", href: "#stocks" },
+  ];
+
   return (
     <nav
       className={`flex w-full items-center justify-between ${
@@ -75,7 +90,7 @@ const Navbar = () => {
         </div>
 
         {/* Logo */}
-        <a href="/" className="z-50">
+        <Link href="/" className="z-50">
           <Image
             src="/logo.png"
             alt="Logo"
@@ -83,30 +98,30 @@ const Navbar = () => {
             height={50}
             className="h-auto w-[100px] object-contain cursor-pointer"
           />
-        </a>
+        </Link>
       </div>
 
       {/* Right Section: Login/Register + Toggle */}
       <div className="flex items-center gap-4">
         {/* Login */}
-        <a
+        <Link
           href="/login"
           className="bg-transparent border border-white text-white px-4 py-2 rounded hover:bg-white hover:text-gray-700 transition duration-300 text-sm"
         >
           Login
-        </a>
+        </Link>
 
         {/* Register */}
-        <a
+        <Link
           href="/register"
           className="bg-blue-600 text-white px-4 py-2 hidden xl:block rounded hover:bg-gray-700 transition duration-300 text-sm"
         >
           Register
-        </a>
+        </Link>
 
         {/* Animated Theme Toggle */}
         <label className="relative inline-flex items-center cursor-pointer ml-2">
-        <ThemeSwitch isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+          <ThemeSwitch isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
         </label>
       </div>
 
@@ -123,60 +138,12 @@ const Navbar = () => {
               isDarkMode ? "bg-blue-600" : "bg-gray-600"
             }`}
           >
-            {[
-              { icon: <IoIosHome />, label: "Home", href: "#home" },
-              { icon: <FaClipboardQuestion />, label: "FAQs", href: "#faq" },
-              {
-                icon: <FaPersonChalkboard />,
-                label: "Sign Up",
-                href: "#signup",
-              },
-              {
-                icon: <FaPersonCircleCheck />,
-                label: "Sign In",
-                href: "#signin",
-              },
-              {
-                icon: <MdOutlineMarkEmailRead />,
-                label: "Contact",
-                href: "/contact",
-              },
-              { icon: <RiFileInfoFill />, label: "About Us", href: "#about" },
-              {
-                icon: <RiExchangeFundsFill />,
-                label: "Hedge Funds",
-                href: "#hedge",
-              },
-              { icon: <GiMining />, label: "Crypto Mining", href: "#crypto" },
-              {
-                icon: <BiTransferAlt />,
-                label: "Forex Trading",
-                href: "#forex",
-              },
-              {
-                icon: <LuClipboardCopy />,
-                label: "Copy Trading",
-                href: "#copy",
-              },
-              {
-                icon: <MdOutlinePrivacyTip />,
-                label: "Privacy Policy",
-                href: "#privacy",
-              },
-              {
-                icon: <AiOutlineStock />,
-                label: "Stocks Trading",
-                href: "#stocks",
-              },
-            ].map((item, i) => (
-              <li
-                key={i}
-                className="flex items-center gap-2 hover:text-black"
-              >
+            {menuItems.map((item, i) => (
+              <li key={i} className="flex items-center gap-2 hover:text-black">
                 <span className="text-white text-xl">{item.icon}</span>
-                <a href={item.href} onClick={() => setMobile(false)}>
+                <Link href={item.href} onClick={() => setMobile(false)}>
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
             <li className="h-10" />

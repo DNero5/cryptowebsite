@@ -4,8 +4,6 @@ import Image from "next/image";
 import Button from "./Button";
 import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 
-import { IoMdCheckmarkCircleOutline } from "react-icons/io";
-
 export default function Footer() {
   return (
     <div id="employees" className="bg-white  md:max-h-[1197] ">
@@ -23,8 +21,8 @@ export default function Footer() {
             <p className="xl:text-sm font-bold gap-1 font-roboto text-xs mt-2 lg:opacity-80 xl:space-x-4 flex flex-wrap items-center">
               BitWealth is your trusted partner in navigating the crypto world.
               <br />
-              We're here to assist you 24/7 with any queries and provide support
-              for your trading and investment needs.
+              We&apos;re here to assist you 24/7 with any queries and provide
+              support
             </p>
           </div>
           {/* desktop button */}
@@ -49,7 +47,7 @@ export default function Footer() {
                 alt="Logo"
                 width={220}
                 height={250}
-                className="h-auto w-[150px] md:w-[450px] xl:w-[150px] object-fit"
+                className="h-auto w-[150px] md:w-[450px] xl:w-[150px] object-contain"
               />
               {/* mobile button */}
               <Button
@@ -94,7 +92,7 @@ export default function Footer() {
                 {/* Contact Section */}
                 <div>
                   <h4 className="xl:text-xl xl:font-bold font-roboto font-bold text-sm">
-                    Let's do it!
+                    Let&apos;s do it!
                   </h4>
 
                   <div className="flex space-x-4 xl:mt-5 mt-2">

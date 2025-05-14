@@ -1,5 +1,7 @@
 import { Outfit } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar"; // ✅ Adjust the path as needed
+import Footer from "@/components/Footer"; // ✅ Adjust the path as needed
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -15,7 +17,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${outfit.variable} antialiased`}>
+        <Navbar />
         {children}
+        <Footer /> {/* ✅ Must be inside <body> */}
       </body>
     </html>
   );

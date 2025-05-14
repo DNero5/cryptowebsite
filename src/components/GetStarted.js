@@ -44,7 +44,7 @@ export default function GetStarted() {
              md:font-[Abhaya Libre] md:text-[32px] md:leading-[42px] md:tracking-[-0.02em]
              font-[Abhaya Libre] text-[32px] leading-[42px] tracking-[-0.02em]"
         >
-          Let's get started
+          Let&apos;s get started
         </h1>
         <p className="font-[Abhaya Libre] text-[16px] mt-5 leading-[30px] tracking-[-0.02em] mb-6">
           Choose one of the following products that suits your needs!

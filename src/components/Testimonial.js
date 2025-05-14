@@ -1,7 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
-import Button from "./Button";
 import { FaStar, FaQuoteRight } from "react-icons/fa";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion";

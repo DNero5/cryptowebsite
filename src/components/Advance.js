@@ -1,21 +1,25 @@
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
+import Image from "next/image";
 
 export default function CryptoExchangeIntro() {
   return (
     <section className="px-6 md:px-16 py-16 bg-gray-600 text-center">
       {/* Heading */}
-      <h1 className="xl:text-5xl font-bold xl:font-[Bahnschrift] xl:leading-[64px] xl:tracking-[-0.02em]
+      <h1
+        className="xl:text-5xl font-bold xl:font-[Bahnschrift] xl:leading-[64px] xl:tracking-[-0.02em]
              md:font-[Abhaya Libre] md:text-[32px] md:leading-[42px] md:tracking-[-0.02em]
-             font-[Abhaya Libre] text-[32px] leading-[42px] tracking-[-0.02em]">
+             font-[Abhaya Libre] text-[32px] leading-[42px] tracking-[-0.02em]"
+      >
         Advanced Currency Exchange
       </h1>
 
       {/* Description */}
       <p className="max-w-3xl mx-auto text-white text-sm md:text-base leading-relaxed mb-8">
-        Navigate the cryptocurrency market with precision. Our platform offers real-time pricing, 
-        comprehensive market analysis, and trend forecasts to inform and enhance your trading strategy. 
-        Stay ahead in the dynamic world of crypto with FinFunder’s insightful exchange tools.
+        Navigate the cryptocurrency market with precision. Our platform offers
+        real-time pricing, comprehensive market analysis, and trend forecasts to
+        inform and enhance your trading strategy. Stay ahead in the dynamic
+        world of crypto with FinFunder’s insightful exchange tools.
       </p>
 
       {/* Explore Button */}
@@ -26,10 +30,12 @@ export default function CryptoExchangeIntro() {
 
       {/* Image Below */}
       <div className="flex justify-center">
-        <img 
-          src="/elonmusk.png" 
-          alt="Cryptocurrency listing" 
-          className="max-w-full rounded-xl shadow-md"
+        <Image
+          src="/elonmusk.png"
+          alt="Cryptocurrency listing"
+          width={600} // adjust based on your needs
+          height={400}
+          className="rounded-xl shadow-md"
         />
       </div>
     </section>
