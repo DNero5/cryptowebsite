@@ -4,6 +4,7 @@ import React from "react";
 import CryptoMarquee from "@/components/CryptoMarquee";
 import TradingViewChart from "@/components/TradingViewChart";
 import CryptoConversionSection from "@/components/CryptoConversionSection";
+import CryptoMarket from "@/components/CryptoMarket";
 
 const Page = () => {
   return (
@@ -30,6 +31,7 @@ const Page = () => {
         trends and make informed trading decisions.
       </p>
        <CryptoConversionSection />
+       <CryptoMarket />
     </section>
    
   );

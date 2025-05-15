@@ -22,7 +22,7 @@ const Hero = () => {
       {/* Content Overlay */}
       <div className="relative z-10 bg-black/50 w-full h-full flex items-center justify-center p-4 sm:p-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="flex flex-col justify-center text-white items-center md:items-start">
+          <div className="flex flex-col justify-center text-white items-center md:items-start ml-0 xl:ml-[-80px]">
             <motion.h1
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
