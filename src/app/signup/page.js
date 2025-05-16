@@ -1,22 +1,36 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 
 const SignUpPage = () => {
   return (
     <div className="flex min-h-screen">
-      {/* Left Section */}
-      <div className="hidden md:flex w-1/2 bg-gray-700 relative text-white">
-        <div className="absolute inset-0 bg-gradient-to-b z-10" />
-        <img
+      {/* Left Section with Banner Image */}
+      <div className="hidden md:flex w-1/2 relative">
+        {/* Background Banner Image */}
+        <Image
           src="/signup.png"
-          alt="Trading background"
-          className="absolute inset-0 h-full w-full object-cover"
+          alt="Signup banner"
+          fill
+          className="object-cover"
+          priority
         />
-        <div className="relative z-20 p-10 flex flex-col justify-center max-w-xl mx-auto text-center">
-          <img src="/logo.png" alt="Logo" className="w-32 mx-auto mb-6" />
+
+        {/* Dark overlay */}
+        <div className="absolute inset-0  z-10" />
+
+        {/* Content */}
+        <div className="relative z-20 p-10 flex flex-col justify-center max-w-xl mx-auto text-center text-white">
+          <Image
+            src="/logo.png"
+            alt="Logo"
+            width={80}
+            height={80}
+            className="w-32 mx-auto mb-6"
+          />
           <h1 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
-            Join Today & Receive up to <br />
+            Join Today &amp; Receive up to <br />
             <span className="text-orange-400">100 USDT Bonus</span>
           </h1>
           <p className="text-sm text-gray-300 leading-relaxed">

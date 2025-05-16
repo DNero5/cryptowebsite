@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 
 const SignInPage = () => {
   return (
@@ -32,7 +33,7 @@ const SignInPage = () => {
               <input
                 type="password"
                 placeholder="Enter Password"
-                className="w-full px-4 py-3 border text-white  border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                className="w-full px-4 py-3 border text-white border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
               />
             </div>
 
@@ -57,7 +58,7 @@ const SignInPage = () => {
             </button>
 
             <div className="text-center text-sm mt-4 text-white">
-              Don't have an account?{" "}
+              <p>Don&apos;t have an account?</p>
               <a
                 href="/signup"
                 className="text-orange-500 font-semibold hover:underline"
@@ -71,14 +72,22 @@ const SignInPage = () => {
 
       {/* Right: Image/Info Section */}
       <div className="hidden md:flex w-1/2 bg-blue-700 relative text-white">
-        <img
-          src="/signup.png" // Replace with your actual image path
+        <Image
+          src="/signup.png"
           alt="Trading"
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          className="absolute inset-0 object-cover"
+          priority
         />
-        <div className="absolute inset-0 " />
+        <div className="absolute inset-0" />
         <div className="relative z-20 flex flex-col justify-center items-center text-center px-10 h-full w-full">
-           <img src="/logo.png" alt="Logo" className="w-32 mx-auto mb-6" />
+          <Image
+            src="/logo.png"
+            alt="Logo"
+            width={80}
+            height={80}
+            className="w-32 mx-auto mb-6"
+          />
           <h2 className="text-3xl font-bold leading-tight mb-4">
             Step Into the World of <br /> Smart Trading
           </h2>
