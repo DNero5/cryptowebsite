@@ -5,10 +5,12 @@ import CryptoMarquee from "@/components/CryptoMarquee";
 import TradingViewChart from "@/components/TradingViewChart";
 import CryptoConversionSection from "@/components/CryptoConversionSection";
 import CryptoMarket from "@/components/CryptoMarket";
+import Navbar from "@/components/Navbar";
 
 const Page = () => {
   return (
     <section className="w-full min-h-[120vh] px-6 md:px-16 py-16 bg-gray-600 text-center text-white">
+       <Navbar />
       {/* Marquee */}
       <div className="w-full mb-5">
         <CryptoMarquee />

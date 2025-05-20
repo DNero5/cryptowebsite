@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${outfit.variable} antialiased`}>
-        <Navbar />
+       
         {children}
         <Footer /> {/* ✅ Must be inside <body> */}
       </body>

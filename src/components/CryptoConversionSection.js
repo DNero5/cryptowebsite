@@ -90,7 +90,7 @@ const CryptoConversionSection = () => {
       <p className="max-w-2xl mx-auto text-gray-400 text-sm md:text-base mb-12">
         Explore the most popular cryptocurrency conversions on BitWealth. Our
         platform provides you with the latest, most sought-after exchange rates,
-        ensuring you’re always informed about high-performing currencies.
+        ensuring you&apos;re always informed about high-performing currencies.
         Efficient, accurate, and designed for savvy traders like you.
       </p>
 

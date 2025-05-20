@@ -3,40 +3,47 @@ import React from "react";
 import Image from "next/image";
 import Button from "./Button";
 import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
+import { usePathname } from "next/navigation";
+
 
 export default function Footer() {
+  const pathname = usePathname();
   return (
     <div id="employees" className="bg-white  md:max-h-[1197] ">
       {/* Footer Section */}
       <footer className="bg-gray-600 text-white max-w-full xl:mt-10  flex flex-col items-center relative py-10">
         {/* CTA Banner inside Footer */}
-        <div className="absolute -top-11 xl:-top-30 md:-top-16 hidden  md:py-9 bg-gradient-to-r from-gray-600 via-white to-blue-600 text-black  py-3 xl:py-10 px-6 rounded-lg w-[90%] xl:max-w-[1200px] xl:flex flex-col xl:flex-row md:flex-row items-center justify-between">
-          <div>
-            <h3 className="xl:text-3xl text-sm md:text-base md:font-inter md:font-semibold font-bold lg:leading-8 tracking-[-0.02em]">
-              Subscribe to our newsletter for the latest crypto trends,
-              <br />
-              BitWealth updates,and exclusive insights.
-            </h3>
+        {pathname !== "/dashboard" && (
+          <div className="absolute -top-11 xl:-top-30 md:-top-16 hidden md:py-9 bg-gradient-to-r from-gray-600 via-white to-blue-600 text-black py-3 xl:py-10 px-6 rounded-lg w-[90%] xl:max-w-[1200px] xl:flex flex-col xl:flex-row md:flex-row items-center justify-between">
+            <div>
+              <h3 className="xl:text-3xl text-sm md:text-base md:font-inter md:font-semibold font-bold lg:leading-8 tracking-[-0.02em]">
+                Subscribe to our newsletter for the latest crypto trends,
+                <br />
+                BitWealth updates, and exclusive insights.
+              </h3>
 
-            <p className="xl:text-sm font-bold gap-1 font-roboto text-xs mt-2 lg:opacity-80 xl:space-x-4 flex flex-wrap items-center">
-              BitWealth is your trusted partner in navigating the crypto world.
-              <br />
-              We&apos;re here to assist you 24/7 with any queries and provide
-              support
-            </p>
+              <p className="xl:text-sm font-bold gap-1 font-roboto text-xs mt-2 lg:opacity-80 xl:space-x-4 flex flex-wrap items-center">
+                BitWealth is your trusted partner in navigating the crypto
+                world.
+                <br />
+                We&apos;re here to assist you 24/7 with any queries and provide
+                support
+              </p>
+            </div>
+
+            {/* Desktop button */}
+            <Button
+              text="SEND US A MESSAGE"
+              className="border-2 border-white hidden xl:block md:hidden"
+            />
+
+            {/* Tablet button */}
+            <Button
+              text="MESSAGE US"
+              className="border-4 text-xs font-inter font-medium border-[#D6CDF9] xl:hidden md:block hidden whitespace-nowrap"
+            />
           </div>
-          {/* desktop button */}
-          <Button
-            text="SEND US A MESSAGE"
-            className="border-2 border-white hidden xl:block md:hidden"
-          />
-
-          {/* tablet button */}
-          <Button
-            text="MESSAGE US"
-            className="border-4 text-xs font-inter font-medium border-[#D6CDF9] xl:hidden md:block hidden whitespace-nowrap"
-          />
-        </div>
+        )}
 
         <div className=" w-full flex flex-row justify-center  mt-10 md:mt-20 ">
           <div className="px-5 xl:px-20 md:px-10 w-full">

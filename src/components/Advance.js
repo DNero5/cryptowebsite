@@ -19,7 +19,7 @@ export default function CryptoExchangeIntro() {
         Navigate the cryptocurrency market with precision. Our platform offers
         real-time pricing, comprehensive market analysis, and trend forecasts to
         inform and enhance your trading strategy. Stay ahead in the dynamic
-        world of crypto with FinFunder’s insightful exchange tools.
+        world of crypto with FinFunder&apos;s insightful exchange tools.
       </p>
 
       {/* Explore Button */}

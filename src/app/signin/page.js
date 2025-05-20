@@ -1,12 +1,61 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import Navbar from "@/components/Navbar";
 
 const SignInPage = () => {
+  const router = useRouter();
+
+  const [form, setForm] = useState({ email: "", password: "" });
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+      console.log("🔐 Login response:", data);
+
+      if (!res.ok) {
+        setError(data.detail || "Login failed. Please try again.");
+        return;
+      }
+
+      const accessToken = data?.data?.access;
+
+      if (!accessToken) {
+        setError("No access token received.");
+        return;
+      }
+
+      // ✅ Store the access token
+      localStorage.setItem("token", accessToken);
+
+      // Redirect to dashboard
+      router.push("/dashboard");
+
+    } catch (err) {
+      console.error("Login error:", err);
+      setError("Something went wrong. Please try again.");
+    }
+  };
+
   return (
     <div className="flex min-h-screen">
-      {/* Left: Form Section */}
+       <Navbar />
       <div className="flex-1 bg-gray-700 flex items-center justify-center">
         <div className="max-w-md w-full px-8 py-12">
           <h2 className="text-2xl md:text-3xl font-semibold text-white mb-8">
@@ -14,26 +63,30 @@ const SignInPage = () => {
             Access Your Trading Hub
           </h2>
 
-          <form className="space-y-5">
+          <form onSubmit={handleSignIn} className="space-y-5">
+            {error && <p className="text-red-400">{error}</p>}
+
             <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Email
-              </label>
+              <label className="block text-sm font-medium text-gray-300">Email</label>
               <input
                 type="email"
+                name="email"
                 placeholder="Enter Email"
-                className="w-full px-4 py-3 text-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                value={form.email}
+                onChange={handleChange}
+                className="w-full px-4 py-3 text-white bg-transparent border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Password
-              </label>
+              <label className="block text-sm font-medium text-gray-300">Password</label>
               <input
                 type="password"
+                name="password"
                 placeholder="Enter Password"
-                className="w-full px-4 py-3 border text-white border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                value={form.password}
+                onChange={handleChange}
+                className="w-full px-4 py-3 text-white bg-transparent border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
               />
             </div>
 
@@ -42,10 +95,7 @@ const SignInPage = () => {
                 <input type="checkbox" className="form-checkbox" />
                 <span className="text-white">Remember me</span>
               </label>
-              <a
-                href="#"
-                className="text-orange-500 hover:underline font-medium"
-              >
+              <a href="#" className="text-orange-500 hover:underline font-medium">
                 Forgot your password?
               </a>
             </div>
@@ -59,10 +109,7 @@ const SignInPage = () => {
 
             <div className="text-center text-sm mt-4 text-white">
               <p>Don&apos;t have an account?</p>
-              <a
-                href="/signup"
-                className="text-orange-500 font-semibold hover:underline"
-              >
+              <a href="/signup" className="text-orange-500 font-semibold hover:underline">
                 Sign Up
               </a>
             </div>
@@ -70,7 +117,6 @@ const SignInPage = () => {
         </div>
       </div>
 
-      {/* Right: Image/Info Section */}
       <div className="hidden md:flex w-1/2 bg-blue-700 relative text-white">
         <Image
           src="/signup.png"

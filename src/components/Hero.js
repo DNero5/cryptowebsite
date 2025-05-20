@@ -3,10 +3,13 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Navbar from "./Navbar";
 
 const Hero = () => {
   return (
+    
     <div className="relative h-[80vh] xl:min-h-screen overflow-hidden">
+       <Navbar />
       {/* Background Banner Image */}
       <div className="absolute inset-0">
         <Image
