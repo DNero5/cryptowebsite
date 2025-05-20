@@ -14,6 +14,7 @@ const SignUpPage = () => {
     email: "",
     password: "",
     confirmPassword: "",
+    role: "user",
   });
 
   const [message, setMessage] = useState("");
@@ -25,7 +26,8 @@ const SignUpPage = () => {
   const [showOtpModal, setShowOtpModal] = useState(false);
   const [otp, setOtp] = useState("");
   const [otpError, setOtpError] = useState("");
-  const [otpMessage, setOtpMessage] = useState(""); // To show success messages on resend etc.
+  const [otpMessage, setOtpMessage] = useState("");
+  const [registeredEmail, setRegisteredEmail] = useState("");
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -35,6 +37,12 @@ const SignUpPage = () => {
     e.preventDefault();
     setError("");
     setMessage("");
+
+    if (form.password !== form.confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/register/`, {
         method: "POST",
@@ -48,14 +56,15 @@ const SignUpPage = () => {
         setError(data.error || "Something went wrong.");
       } else {
         setMessage(data.message);
+        setRegisteredEmail(form.email);
         setForm({
           first_name: "",
           last_name: "",
           email: "",
           password: "",
           confirmPassword: "",
+          role: "",
         });
-        // Show OTP modal after signup success
         setShowOtpModal(true);
       }
     } catch (err) {
@@ -67,27 +76,20 @@ const SignUpPage = () => {
     setOtpError("");
     setOtpMessage("");
 
-    console.log("Sending OTP:", otp);
-
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/otp/verify/`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ otp }),
-        }
-      );
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/otp/verify/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ otp }),
+      });
 
       const data = await res.json();
-      console.log("OTP Verify Response:", data);
 
       if (!res.ok) {
         setOtpError(data.error || "Invalid OTP.");
       } else {
         alert("Email verified successfully!");
         setShowOtpModal(false);
-        // Redirect user after success: change "/signin" to "/dashboard" if needed
         router.push("/signin");
       }
     } catch (err) {
@@ -95,25 +97,25 @@ const SignUpPage = () => {
     }
   };
 
-  // New: Resend OTP handler
   const handleResendOtp = async () => {
     setOtpError("");
     setOtpMessage("");
 
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/otp/new`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: form.email }),
-        }
-      );
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/otp/new/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: registeredEmail }),
+      });
 
       const data = await res.json();
 
       if (!res.ok) {
-        setOtpError(data.error || "Failed to resend OTP.");
+        if (data.message?.includes("email is correct and has not been verified")) {
+          setOtpError("This email is already verified or invalid. Please sign in instead.");
+        } else {
+          setOtpError(data.error || "Failed to resend OTP.");
+        }
       } else {
         setOtpMessage("OTP resent successfully. Please check your email.");
       }
@@ -122,7 +124,6 @@ const SignUpPage = () => {
     }
   };
 
-  // New: Close modal handler
   const handleCloseModal = () => {
     setShowOtpModal(false);
     setOtp("");
@@ -132,7 +133,8 @@ const SignUpPage = () => {
 
   return (
     <div className="flex min-h-screen">
-       <Navbar />
+      <Navbar />
+
       {/* Left Section */}
       <div className="hidden md:flex w-1/2 relative">
         <Image
@@ -168,16 +170,10 @@ const SignUpPage = () => {
             Sign Up Your Account
           </h2>
 
-          {message && (
-            <div className="mb-4 text-green-400 text-sm font-medium">{message}</div>
-          )}
-          {error && (
-            <div className="mb-4 text-red-400 text-sm font-medium">{error}</div>
-          )}
+          {message && <div className="mb-4 text-green-400 text-sm font-medium">{message}</div>}
+          {error && <div className="mb-4 text-red-400 text-sm font-medium">{error}</div>}
 
           <form onSubmit={handleSubmit} className="space-y-5">
-            {/* ... your input fields remain unchanged */}
-            {/* omitted here for brevity */}
             <input
               type="text"
               name="first_name"
@@ -203,7 +199,7 @@ const SignUpPage = () => {
               className="w-full border border-gray-300 rounded-md px-4 py-2 bg-transparent text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-orange-500"
             />
 
-            {/* Password with toggle */}
+            {/* Password */}
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
@@ -222,7 +218,7 @@ const SignUpPage = () => {
               </button>
             </div>
 
-            {/* Confirm Password with toggle */}
+            {/* Confirm Password */}
             <div className="relative">
               <input
                 type={showConfirmPassword ? "text" : "password"}
@@ -234,9 +230,7 @@ const SignUpPage = () => {
               />
               <button
                 type="button"
-                onClick={() =>
-                  setShowConfirmPassword(!showConfirmPassword)
-                }
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 className="absolute inset-y-0 right-3 flex items-center text-sm text-white"
               >
                 {showConfirmPassword ? "Hide" : "Show"}
@@ -274,12 +268,8 @@ const SignUpPage = () => {
               className="w-full border border-gray-300 rounded-md px-4 py-2 mb-4"
               placeholder="Enter OTP"
             />
-            {otpError && (
-              <p className="text-red-500 text-sm mb-2">{otpError}</p>
-            )}
-            {otpMessage && (
-              <p className="text-green-500 text-sm mb-2">{otpMessage}</p>
-            )}
+            {otpError && <p className="text-red-500 text-sm mb-2">{otpError}</p>}
+            {otpMessage && <p className="text-green-500 text-sm mb-2">{otpMessage}</p>}
             <button
               onClick={handleVerifyOtp}
               className="w-full bg-blue-600 hover:bg-orange-600 text-white font-semibold py-2 rounded-md mb-2"
