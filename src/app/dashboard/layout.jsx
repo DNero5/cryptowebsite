@@ -1,28 +1,33 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import Image from 'next/image';
-
-
+import Image from "next/image";
 
 export default function DashboardLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const router = useRouter(); // ✅ useRouter inside the component
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    router.push("/"); // ✅ Redirect to homepage
+  };
 
   return (
     <div className="flex min-h-screen bg-black text-white flex-col md:flex-row">
       {/* Mobile Header with Hamburger */}
       <div className="md:hidden w-full bg-[#111111] p-4 flex justify-between items-center">
-       <Link href="/">
-            <Image
-              src="/logo.png"
-              alt="Logo"
-              width={130}
-              height={130}
-              className="h-[80px] w-[130px] object-contain cursor-pointer"
-            />
-          </Link>
+        <Link href="/">
+          <Image
+            src="/logo.png"
+            alt="Logo"
+            width={130}
+            height={130}
+            className="h-[80px] w-[130px] object-contain cursor-pointer"
+          />
+        </Link>
         <button onClick={() => setSidebarOpen(!sidebarOpen)}>
           {sidebarOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
@@ -76,13 +81,17 @@ export default function DashboardLayout({ children }) {
             </Link>
           </nav>
         </div>
+
         <div className="space-y-2 mt-8">
           <div className="bg-gray-800 text-xs p-3 rounded">
             <strong>What&apos;s New</strong>
             <br />
             Broad Asset Support. Token Explorer. And more.
           </div>
-          <button className="block p-2 text-left text-sm rounded hover:bg-gray-800">
+          <button
+            onClick={handleLogout}
+            className="block p-2 text-left text-sm rounded hover:bg-gray-800 cursor-pointer"
+          >
             🚪 Log out
           </button>
         </div>

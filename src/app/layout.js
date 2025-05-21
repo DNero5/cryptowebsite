@@ -11,7 +11,7 @@ const outfit = Outfit({
 });
 
 export const metadata = {
-  title: "myapp",
+  title: "Top Market",
   description: "website",
 };
 
