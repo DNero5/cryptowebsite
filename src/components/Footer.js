@@ -5,7 +5,6 @@ import Button from "./Button";
 import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 
-
 export default function Footer() {
   const pathname = usePathname();
   return (
@@ -50,11 +49,11 @@ export default function Footer() {
             {/* Brand Section */}
             <div className="flex items-center justify-between w-full mb-6">
               <Image
-                src="/Logo.png"
+                src="/logo.png"
                 alt="Logo"
-                width={220}
-                height={250}
-                className="h-auto w-[150px] md:w-[450px] xl:w-[150px] object-contain"
+                width={130}
+                height={130}
+                className="h-[130px] w-[130px] object-contain cursor-pointer"
               />
               {/* mobile button */}
               <Button
