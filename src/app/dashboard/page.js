@@ -211,7 +211,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <h2 className="text-2xl font-semibold mb-4">Your Wallets</h2>
+        <h2 className="text-2xl font-semibold mb-4">Deposit Wallets</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {data.wallets.map((wallet) => {
             const symbol = wallet.coin.toLowerCase();
