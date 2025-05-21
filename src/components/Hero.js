@@ -4,12 +4,12 @@ import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Navbar from "./Navbar";
+import Link from "next/link";
 
 const Hero = () => {
   return (
-    
     <div className="relative h-[80vh] xl:min-h-screen overflow-hidden">
-       <Navbar />
+      <Navbar />
       {/* Background Banner Image */}
       <div className="absolute inset-0">
         <Image
@@ -47,14 +47,16 @@ const Hero = () => {
               Market Trade.
             </motion.p>
 
-            <motion.button
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
-              className="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-2xl text-lg transition duration-300"
-            >
-              Open Free Account
-            </motion.button>
+            <Link href="/signup">
+              <motion.button
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+                className="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-2xl text-lg transition duration-300"
+              >
+                Open Free Account
+              </motion.button>
+            </Link>
           </div>
         </div>
       </div>

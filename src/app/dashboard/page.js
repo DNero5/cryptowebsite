@@ -8,6 +8,11 @@ export default function DashboardPage() {
   const [copiedId, setCopiedId] = useState(null);
   const [data, setData] = useState(null);
   const [coinIcons, setCoinIcons] = useState({});
+  const [balance, setBalance] = useState(0);
+  const [showModal, setShowModal] = useState(false);
+  const [withdrawAmount, setWithdrawAmount] = useState("");
+  const [notification, setNotification] = useState("");
+
   const router = useRouter();
 
   const handleCopy = async (wallet) => {
@@ -19,12 +24,6 @@ export default function DashboardPage() {
       console.error("Failed to copy:", err);
     }
   };
-
-  // Changed here: initial balance 0 instead of 500
-  const [balance, setBalance] = useState(0);
-  const [showModal, setShowModal] = useState(false);
-  const [withdrawAmount, setWithdrawAmount] = useState("");
-  const [notification, setNotification] = useState("");
 
   const openModal = () => {
     setWithdrawAmount("");
@@ -38,7 +37,6 @@ export default function DashboardPage() {
 
   const handleWithdraw = () => {
     const amount = parseFloat(withdrawAmount);
-
     if (isNaN(amount) || amount <= 0) {
       setNotification("Enter a valid amount.");
       return;
@@ -46,7 +44,7 @@ export default function DashboardPage() {
 
     if (amount <= balance) {
       setNotification("Your withdrawal is being processed.");
-      // TODO: call withdrawal API here
+      // TODO: withdrawal API call
     } else {
       setNotification("Top up your wallet to make a withdrawal.");
     }
@@ -55,7 +53,6 @@ export default function DashboardPage() {
   useEffect(() => {
     const fetchUserData = async () => {
       const token = localStorage.getItem("token");
-
       if (!token) {
         router.push("/signin");
         return;
@@ -65,7 +62,6 @@ export default function DashboardPage() {
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/user/dashboard/`,
           {
-            method: "GET",
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${token}`,
@@ -73,12 +69,13 @@ export default function DashboardPage() {
           }
         );
 
-        if (!res.ok) throw new Error("Failed to fetch user data");
+        if (!res.ok) {
+          throw new Error("Failed to fetch user data");
+        }
 
         const result = await res.json();
         setData(result);
 
-        // Added here: calculate total balance and set it
         const totalBalance = result.wallets.reduce(
           (sum, wallet) => sum + Number(wallet.balance || 0),
           0
@@ -101,7 +98,6 @@ export default function DashboardPage() {
         let cachedList = JSON.parse(localStorage.getItem("cgCoinList"));
         const now = Date.now();
 
-        // Refresh cache every 24 hours
         if (!cachedList || now - cachedList.timestamp > 24 * 60 * 60 * 1000) {
           const listRes = await fetch(
             "https://api.coingecko.com/api/v3/coins/list"
@@ -202,7 +198,6 @@ export default function DashboardPage() {
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-gray-900 p-4 rounded">
             <h2 className="text-lg mb-2">💼Payment Wallet</h2>
-            {/* Replaced calculation with state balance */}
             <p className="text-2xl font-semibold">${balance.toFixed(2)}</p>
           </div>
           <div className="bg-gray-900 p-4 rounded">

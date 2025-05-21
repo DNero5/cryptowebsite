@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 
-
 const SignInPage = () => {
   const router = useRouter();
 
@@ -59,7 +58,6 @@ const SignInPage = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    
     <div className="flex min-h-screen">
       <Navbar />
       <div className="flex-1 bg-gray-700 flex items-center justify-center">
@@ -157,9 +155,9 @@ const SignInPage = () => {
           <Image
             src="/logo.png"
             alt="Logo"
-            width={80}
-            height={80}
-            className="w-32 mx-auto mb-6"
+            width={130}
+            height={130}
+            className="h-[130px] w-[130px] object-contain cursor-pointer"
           />
           <h2 className="text-3xl font-bold leading-tight mb-4">
             Step Into the World of <br /> Smart Trading
