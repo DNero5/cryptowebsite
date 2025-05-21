@@ -201,8 +201,8 @@ export default function DashboardPage() {
             <p className="text-2xl font-semibold">${data.view.balance}</p>
           </div>
           <div className="bg-gray-900 p-4 rounded">
-            <h2 className="text-lg mb-2">🛡️ Vaults</h2>
-            <p className="text-gray-400">Vaults coming soon</p>
+            <h2 className="text-lg mb-2">🛡️ Amount</h2>
+            <p className="text-2xl font-semibold">${data.view.amount}</p>
           </div>
         </div>
 
