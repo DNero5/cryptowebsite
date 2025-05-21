@@ -28,7 +28,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="absolute top-0 left-0 w-full z-50 px-6 py-4">
+    <nav className="absolute top-0 left-0 w-full z-50 -mt-14 px-6 py-4">
       <div className="flex w-full items-center justify-between  rounded-xl px-4 py-3">
         {/* Left Section: Logo + Menu */}
         <div className="flex items-center gap-6 ">
@@ -37,8 +37,8 @@ const Navbar = () => {
               src="/logo.png"
               alt="Logo"
               width={130}
-              height={50}
-              className="h-auto w-[100px] object-contain cursor-pointer"
+              height={130}
+              className="h-[130px] w-[130px] object-contain cursor-pointer"
             />
           </Link>
 

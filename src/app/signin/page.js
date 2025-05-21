@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 
+
 const SignInPage = () => {
   const router = useRouter();
 
@@ -20,11 +21,14 @@ const SignInPage = () => {
     setError("");
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login/`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/login/`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(form),
+        }
+      );
 
       const data = await res.json();
       console.log("🔐 Login response:", data);
@@ -46,16 +50,18 @@ const SignInPage = () => {
 
       // Redirect to dashboard
       router.push("/dashboard");
-
     } catch (err) {
       console.error("Login error:", err);
       setError("Something went wrong. Please try again.");
     }
   };
 
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
+    
     <div className="flex min-h-screen">
-       <Navbar />
+      <Navbar />
       <div className="flex-1 bg-gray-700 flex items-center justify-center">
         <div className="max-w-md w-full px-8 py-12">
           <h2 className="text-2xl md:text-3xl font-semibold text-white mb-8">
@@ -67,7 +73,9 @@ const SignInPage = () => {
             {error && <p className="text-red-400">{error}</p>}
 
             <div>
-              <label className="block text-sm font-medium text-gray-300">Email</label>
+              <label className="block text-sm font-medium text-gray-300">
+                Email
+              </label>
               <input
                 type="email"
                 name="email"
@@ -78,16 +86,29 @@ const SignInPage = () => {
               />
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-300">Password</label>
+            <div className="relative">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-300 mb-1"
+              >
+                Password
+              </label>
               <input
-                type="password"
+                id="password"
+                type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Enter Password"
                 value={form.password}
                 onChange={handleChange}
-                className="w-full px-4 py-3 text-white bg-transparent border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                className="w-full px-4 py-3 pr-12 text-white bg-transparent border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
               />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-8 right-3 text-sm text-orange-400 hover:text-orange-200 focus:outline-none"
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
             </div>
 
             <div className="flex items-center justify-between text-sm">
@@ -95,7 +116,10 @@ const SignInPage = () => {
                 <input type="checkbox" className="form-checkbox" />
                 <span className="text-white">Remember me</span>
               </label>
-              <a href="#" className="text-orange-500 hover:underline font-medium">
+              <a
+                href="#"
+                className="text-orange-500 hover:underline font-medium"
+              >
                 Forgot your password?
               </a>
             </div>
@@ -109,7 +133,10 @@ const SignInPage = () => {
 
             <div className="text-center text-sm mt-4 text-white">
               <p>Don&apos;t have an account?</p>
-              <a href="/signup" className="text-orange-500 font-semibold hover:underline">
+              <a
+                href="/signup"
+                className="text-orange-500 font-semibold hover:underline"
+              >
                 Sign Up
               </a>
             </div>

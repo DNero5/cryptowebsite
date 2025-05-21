@@ -137,7 +137,7 @@ export default function DashboardPage() {
 
       <div className="grid grid-cols-2 gap-4">
         <div className="bg-gray-900 p-4 rounded">
-          <h2 className="text-lg mb-2">💼 Wallet</h2>
+          <h2 className="text-lg mb-2">💼Payment Wallet</h2>
           <p className="text-2xl font-semibold">
             $
             {data.wallets.length

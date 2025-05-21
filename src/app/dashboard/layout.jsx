@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import Image from 'next/image';
+
+
 
 export default function DashboardLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -11,7 +14,15 @@ export default function DashboardLayout({ children }) {
     <div className="flex min-h-screen bg-black text-white flex-col md:flex-row">
       {/* Mobile Header with Hamburger */}
       <div className="md:hidden w-full bg-[#111111] p-4 flex justify-between items-center">
-        <div className="text-2xl font-bold">dentsu</div>
+       <Link href="/">
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={130}
+              height={130}
+              className="h-[80px] w-[130px] object-contain cursor-pointer"
+            />
+          </Link>
         <button onClick={() => setSidebarOpen(!sidebarOpen)}>
           {sidebarOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
@@ -25,22 +36,46 @@ export default function DashboardLayout({ children }) {
           md:translate-x-0 md:relative md:flex md:flex-col md:justify-between`}
       >
         <div>
-          <div className="text-3xl font-bold mb-8 mt-4 md:block hidden">dentsu</div>
+          <Link href="/">
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={130}
+              height={130}
+              className="h-[130px] w-[130px] object-contain cursor-pointer"
+            />
+          </Link>
 
-          <nav className="space-y-2 text-sm">
-            <Link href="/dashboard" className="block p-2 rounded hover:bg-gray-800">
+          <nav className="space-y-2 text-sm mt-4">
+            <Link
+              href="/dashboard"
+              className="block p-2 rounded hover:bg-gray-800"
+            >
               🏠 Home
             </Link>
-            <Link href="#" className="block p-2 rounded hover:bg-gray-800">👛 Wallet</Link>
-            <Link href="#" className="block p-2 rounded hover:bg-gray-800">🛡️ Vaults</Link>
-            <Link href="#" className="block p-2 rounded hover:bg-gray-800">🔁 Swidge</Link>
-            <Link href="#" className="block p-2 rounded hover:bg-gray-800">📊 Activity</Link>
-            <Link href="#" className="block p-2 rounded hover:bg-gray-800">🎁 Airdrops</Link>
-            <Link href="#" className="block p-2 rounded hover:bg-gray-800">💰 Earn</Link>
-            <Link href="#" className="block p-2 rounded hover:bg-gray-800">🚀 Bullrun</Link>
+            <Link href="#" className="block p-2 rounded hover:bg-gray-800">
+              👛 Wallet
+            </Link>
+            <Link href="#" className="block p-2 rounded hover:bg-gray-800">
+              🛡️ Vaults
+            </Link>
+            <Link href="#" className="block p-2 rounded hover:bg-gray-800">
+              🔁 Swidge
+            </Link>
+            <Link href="#" className="block p-2 rounded hover:bg-gray-800">
+              📊 Activity
+            </Link>
+            <Link href="#" className="block p-2 rounded hover:bg-gray-800">
+              🎁 Airdrops
+            </Link>
+            <Link href="#" className="block p-2 rounded hover:bg-gray-800">
+              💰 Earn
+            </Link>
+            <Link href="#" className="block p-2 rounded hover:bg-gray-800">
+              🚀 Bullrun
+            </Link>
           </nav>
         </div>
-
         <div className="space-y-2 mt-8">
           <div className="bg-gray-800 text-xs p-3 rounded">
             <strong>What&apos;s New</strong>
