@@ -8,7 +8,7 @@ export default function DashboardPage() {
   const [copiedId, setCopiedId] = useState(null);
   const [data, setData] = useState(null);
   const [coinIcons, setCoinIcons] = useState({});
-  const [balance, setBalance] = useState(0);
+  // const [balance, setBalance] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [withdrawAmount, setWithdrawAmount] = useState("");
   const [notification, setNotification] = useState("");
@@ -76,11 +76,11 @@ export default function DashboardPage() {
         const result = await res.json();
         setData(result);
 
-        const totalBalance = result.wallets.reduce(
-          (sum, wallet) => sum + Number(wallet.balance || 0),
-          0
-        );
-        setBalance(totalBalance);
+        // const totalBalance = result.wallets.reduce(
+        //   (sum, wallet) => sum + Number(wallet.balance || 0),
+        //   0
+        // );
+        // setBalance(totalBalance);
 
         const uniqueCoins = [
           ...new Set(result.wallets.map((w) => w.coin.toLowerCase())),
@@ -198,7 +198,7 @@ export default function DashboardPage() {
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-gray-900 p-4 rounded">
             <h2 className="text-lg mb-2">💼Payment Wallet</h2>
-            <p className="text-2xl font-semibold">${balance.toFixed(2)}</p>
+            <p className="text-2xl font-semibold">${data.user.balance}</p>
           </div>
           <div className="bg-gray-900 p-4 rounded">
             <h2 className="text-lg mb-2">🛡️ Vaults</h2>
