@@ -89,7 +89,6 @@ export default function Footer() {
                   </h4>
                   <ul className="xl:mt-8 md:mt-5  xl:text-base text-xs md:text-sm md:font-inter font-normal leading-6 opacity-80 xl:space-y-4 xl:pl-7 space-y-1 md:space-y-3 xl:whitespace-nowrap">
                     <li>Privacy Policy</li>
-                    <li>WordPress Development</li>
                     <li>Terms & Conditions</li>
                     <li>Contact</li>
                   </ul>
@@ -130,10 +129,10 @@ export default function Footer() {
 
                   <div className="md:hidden lg:block">
                     <p className="xl:mt-10 mt-7 xl:text-xl xl:font-semibold xl:opacity-80 text-sm font-inter font-medium relative after:content-[''] after:w-16 after:h-[2px] xl:after:block after:bg-[#8568ED] after:mt-1 after:absolute after:left-0 after:hidden">
-                      hello@sitiodesign.com
+                      hello@markettop.org
                     </p>
                     <p className="xl:mt-3 xl:text-xl xl:font-semibold xl:opacity-80 text-sm font-inter font-medium">
-                      +234 8160304426
+                      +1 650 151 7262
                     </p>
                   </div>
                 </div>

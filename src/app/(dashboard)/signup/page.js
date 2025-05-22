@@ -12,6 +12,7 @@ const SignUpPage = () => {
     first_name: "",
     last_name: "",
     email: "",
+    phone: "",
     password: "",
     confirmPassword: "",
     role: "user",
@@ -61,6 +62,7 @@ const SignUpPage = () => {
           first_name: "",
           last_name: "",
           email: "",
+          phone: "",
           password: "",
           confirmPassword: "",
           role: "",
@@ -170,8 +172,14 @@ const SignUpPage = () => {
             Sign Up Your Account
           </h2>
 
-          {message && <div className="mb-4 text-green-400 text-sm font-medium">{message}</div>}
-          {error && <div className="mb-4 text-red-400 text-sm font-medium">{error}</div>}
+          {message && (
+            <div className="mb-4 text-green-400 text-sm font-medium">
+              {message}
+            </div>
+          )}
+          {error && (
+            <div className="mb-4 text-red-400 text-sm font-medium">{error}</div>
+          )}
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <input
@@ -195,6 +203,15 @@ const SignUpPage = () => {
               name="email"
               placeholder="Email"
               value={form.email}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded-md px-4 py-2 bg-transparent text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-orange-500"
+            />
+
+            <input
+              type="text"
+              name="phone"
+              placeholder="Phone"
+              value={form.phone}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-md px-4 py-2 bg-transparent text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-orange-500"
             />
@@ -268,8 +285,12 @@ const SignUpPage = () => {
               className="w-full border border-gray-300 rounded-md px-4 py-2 mb-4"
               placeholder="Enter OTP"
             />
-            {otpError && <p className="text-red-500 text-sm mb-2">{otpError}</p>}
-            {otpMessage && <p className="text-green-500 text-sm mb-2">{otpMessage}</p>}
+            {otpError && (
+              <p className="text-red-500 text-sm mb-2">{otpError}</p>
+            )}
+            {otpMessage && (
+              <p className="text-green-500 text-sm mb-2">{otpMessage}</p>
+            )}
             <button
               onClick={handleVerifyOtp}
               className="w-full bg-blue-600 hover:bg-orange-600 text-white font-semibold py-2 rounded-md mb-2"
