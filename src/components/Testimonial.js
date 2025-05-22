@@ -9,7 +9,7 @@ const testimonials = [
     name: "David Kim",
     title: "Crypto Enthusiast",
     review:
-      "What I love about BitWealth is the community aspect. It's not just a trading platform; it's a hub of knowledge and insights. The support team is fantastic, always ready to help with any queries.",
+      "What I love about MarketTop is the community aspect. It's not just a trading platform; it's a hub of knowledge and insights. The support team is fantastic, always ready to help with any queries.",
     rating: 4,
     totalReviews: 885,
   },
@@ -17,7 +17,7 @@ const testimonials = [
     name: "Elena Martinez",
     title: "Blockchain Analyst",
     review:
-      "BitWealth's tools and resources are top-tier. It's helped me stay ahead of market trends and make smarter trading decisions.",
+      "MarketTop's tools and resources are top-tier. It's helped me stay ahead of market trends and make smarter trading decisions.",
     rating: 5,
     totalReviews: 1143,
   },
@@ -25,7 +25,7 @@ const testimonials = [
     name: "James Liu",
     title: "Crypto Investor",
     review:
-      "BitWealth has transformed the way I manage my assets. I appreciate the transparent analytics and responsive customer service.",
+      "MarketTop has transformed the way I manage my assets. I appreciate the transparent analytics and responsive customer service.",
     rating: 4,
     totalReviews: 932,
   },
@@ -62,7 +62,7 @@ export const Testimonial = () => {
           Success Stories from Our Clients
         </h2>
         <p className="max-w-2xl text-sm md:text-base text-gray-600 mb-12">
-          Discover how BitWealth has empowered individuals and businesses in their crypto trading and investment journey.
+          Discover how MarketTop has empowered individuals and businesses in their crypto trading and investment journey.
         </p>
       </div>
 

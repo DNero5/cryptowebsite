@@ -18,11 +18,11 @@ export default function Footer() {
               <h3 className="xl:text-3xl text-sm md:text-base md:font-inter md:font-semibold font-bold lg:leading-8 tracking-[-0.02em]">
                 Subscribe to our newsletter for the latest crypto trends,
                 <br />
-                BitWealth updates, and exclusive insights.
+                MarketTop updates, and exclusive insights.
               </h3>
 
               <p className="xl:text-sm font-bold gap-1 font-roboto text-xs mt-2 lg:opacity-80 xl:space-x-4 flex flex-wrap items-center">
-                BitWealth is your trusted partner in navigating the crypto
+                MarketTop is your trusted partner in navigating the crypto
                 world.
                 <br />
                 We&apos;re here to assist you 24/7 with any queries and provide
